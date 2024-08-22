@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Videos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .btn-like {
+            background-color: #7e399e;
+        }
+
+        .btn-dislike {
+            background-color: #f748f169;
+        }
+
+        .vote-count {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    background: #000000;    
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.navbar a {
+    padding: 10px 10px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #f7a648;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* Media Query for mobile devices */
+@media (max-width: 768px) {
+    .navbar {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #000;
+        position: absolute;
+        top: 60px;
+        right: 30px;
+        width: 150px;
+        text-align: left;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .navbar a {
+        color: #fff;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <header class="head">
+        <div class="logo">
+            <a href="#">WENDYS DESIGN</a>
+        </div>
+        <nav class="navbar" id="navbar">
+            <a href="index.html">Nosotros</a>
+            <a href="Servicios.html" target="_blank">Portafolio</a>
+            <a href="index.html">Contacto</a>
+
+        </nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+
+
+    <br>
+    <br>
+    <h1>Portafolio</h1>
+    <div class="gallery">
+        <!-- Video 1 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/qro7SbZHT3w?si=f64WK9whtjLRLU9h" title="YouTube video player"
+                frameborder="0" allowfullscreen></iframe>
+            <div class="buttons">
+                <button class="btn btn-like" onclick="vote('video1', 'like')">👍 Me gusta</button>
+                <button class="btn btn-dislike" onclick="vote('video1', 'dislike')">👎 No me gusta</button>
+            </div>
+            <div id="video1-votes" class="vote-count">Likes: 0 | Dislikes: 0</div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/PLh2uwKha4U?si=3CWR5syKJQ2cOAyV" title="YouTube video player"
+                frameborder="0" allowfullscreen></iframe>
+            <div class="buttons">
+                <button class="btn btn-like" onclick="vote('video2', 'like')">👍 Me gusta</button>
+                <button class="btn btn-dislike" onclick="vote('video2', 'dislike')">👎 No me gusta</button>
+            </div>
+            <div id="video2-votes" class="vote-count">Likes: 0 | Dislikes: 0</div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/p17RDaO4kRI?si=ePTCHnv0I3rz4AYb" title="YouTube video player"
+                frameborder="0" allowfullscreen></iframe>
+            <div class="buttons">
+                <button class="btn btn-like" onclick="vote('video3', 'like')">👍 Me gusta</button>
+                <button class="btn btn-dislike" onclick="vote('video3', 'dislike')">👎 No me gusta</button>
+            </div>
+            <div id="video3-votes" class="vote-count">Likes: 0 | Dislikes: 0</div>
+        </div>
+        <!-- Video 4 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/J95lAwjhgOw?si=3DHXTPxS3wuf1yVw" title="YouTube video player"
+                frameborder="0" allowfullscreen></iframe>
+            <div class="buttons">
+                <button class="btn btn-like" onclick="vote('video4', 'like')">👍 Me gusta</button>
+                <button class="btn btn-dislike" onclick="vote('video4', 'dislike')">👎 No me gusta</button>
+            </div>
+            <div id="video4-votes" class="vote-count">Likes: 0 | Dislikes: 0</div>
+        </div>
+        <!-- Video 5 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/yXeYZr4hvWA?si=2WEtiQjru4qU1s_b" title="YouTube video player"
+                frameborder="0" allowfullscreen></iframe>
+            <div class="buttons">
+                <button class="btn btn-like" onclick="vote('video5', 'like')">👍 Me gusta</button>
+                <button class="btn btn-dislike" onclick="vote('video5', 'dislike')">👎 No me gusta</button>
+            </div>
+            <div id="video5-votes" class="vote-count">Likes: 0 | Dislikes: 0</div>
+        </div>
+        <!-- Video 6 -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/BZXaHpg1MII?si=6fdzhmQVJEjK3b8s" title="YouTube video player"
+                frameborder="0" allowfullscreen></iframe>
+            <div class="buttons">
+                <button class="btn btn-like" onclick="vote('video6', 'like')">👍 Me gusta</button>
+                <button class="btn btn-dislike" onclick="vote('video6', 'dislike')">👎 No me gusta</button>
+            </div>
+            <div id="video6-votes" class="vote-count">Likes: 0 | Dislikes: 0</div>
+        </div>
+    </div>
+
+    <script>
+        function vote(videoId, voteType) {
+            const likeKey = `${videoId}-like`;
+            const dislikeKey = `${videoId}-dislike`;
+            const currentLikes = localStorage.getItem(likeKey) || 0;
+            const currentDislikes = localStorage.getItem(dislikeKey) || 0;
+
+            if (voteType === 'like') {
+                localStorage.setItem(likeKey, parseInt(currentLikes) + 1);
+            } else if (voteType === 'dislike') {
+                localStorage.setItem(dislikeKey, parseInt(currentDislikes) + 1);
+            }
+
+            updateVoteCount(videoId);
+        }
+
+        function updateVoteCount(videoId) {
+            const likeKey = `${videoId}-like`;
+            const dislikeKey = `${videoId}-dislike`;
+            const likes = localStorage.getItem(likeKey) || 0;
+            const dislikes = localStorage.getItem(dislikeKey) || 0;
+
+            document.getElementById(`${videoId}-votes`).textContent = `Likes: ${likes} | Dislikes: ${dislikes}`;
+        }
+
+        // Initialize vote counts on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateVoteCount('video1');
+            updateVoteCount('video2');
+            updateVoteCount('video3');
+            updateVoteCount('video4');
+            updateVoteCount('video5');
+            updateVoteCount('video6');
+        });
+    </script>
+
+<script>
+    document.getElementById('mobile-menu').addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.getElementById('navbar').classList.toggle('active');
+    });
+</script>
+
+</body>
+
+</html>
+
